@@ -10,21 +10,21 @@
 
     <title>Cadastre-me!</title>
   </head>
-
+  <form action="{%url 'listagem usuarios'%}" method="post">
   <body>
-    <nav style="background-color: rgb(3, 81, 55) !important;" class="navbar navbar-light bg-light">
-        <div class="container-fluid">
-            <span class="navbar-brand mb-0 h1">Navbar</span>
-        </div>
-
-    </nav>
+     <nav style="background-color: rgb(3, 81, 55) !important;" class="navbar navbar-light bg-light">
+         <div class="container-fluid">
+             <span class="navbar-brand mb-0 h1">Cadastre-me</span>
+         </div>
+     </nav>
 
     <div class = container> 
-        <h1>Cadastro de usuario</h1>
-        Nome<input type="text">
-        Idade<input type="text">
-        <button>Enviair</button>
+      <h1>Cadastro de usuario</h1>
+        Nome<input name="name" class="form-control-sm" type="text">
+        Idade<input name="idade" class="form-control-sm" type="text">
+        <button class="form-control-sm">Enviar</button>
     </div>
+  </form>
 
     
 

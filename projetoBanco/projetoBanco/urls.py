@@ -1,10 +1,14 @@
 
 from django.urls import path
-from app_cad_usuarios import views
+from banco.views import home
+from banco.models import Usuarios
 
 
 urlpatterns = [
     # rota, view responsável, nome de referência
     # usuario.com
-    path('',views.home,nome='home'),
+    path('',home,name='home'),
+
+    #usuario.com/usuarios
+    path('usuarios/',Usuarios, name='listagem_usuarios')
 ]
