@@ -1,8 +1,6 @@
 from django.shortcuts import render
 from .models import Usuario
 
-
-
 def home(request):
     return render(request,'home.html')
 # Create your views here.
@@ -20,7 +18,5 @@ def lista_usuarios(request):
         'usuarios': Usuario.objects.all()
     }
 
-
     #Retornar os dados para a página de listagem de usuários
     return render (request,'usuarios.html',usuario)
-
