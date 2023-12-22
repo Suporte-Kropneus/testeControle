@@ -1,7 +1,8 @@
 
 from django.urls import path
 from banco.views import home
-from banco.models import Usuarios
+from banco.views import usuarios
+from banco.models import Usuario
 
 
 urlpatterns = [
@@ -10,5 +11,5 @@ urlpatterns = [
     path('',home,name='home'),
 
     #usuario.com/usuarios
-    path('usuarios/',Usuarios, name='listagem_usuarios')
+    path('usuarios/',usuarios, name='listagem_usuarios')
 ]
