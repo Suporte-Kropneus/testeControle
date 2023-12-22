@@ -18,7 +18,7 @@
           <span class="navbar-brand mb-0 h1" href="#">Cadastre-me</a>
         </div>
       </nav>
-        <form action="{% url 'listagem_usuarios' %}" method="post">
+        <form action="{% url 'cria_usuarios' %}" method="post">
             {% csrf_token %}
             <div style="text-align: center;" class="container">
                 <h1>Cadastro de Usuario</h1>
