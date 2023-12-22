@@ -25,7 +25,14 @@
                 Nome <input name="nome" class='form-control-sm' type="text">
                 Idade <input name="idade" class='form-control-sm' type="text">
                 <button class='form-control-sm'>Enviar</button>
-            </div>
+                
+              </div>
+            
+        </form>
+
+        <form action="{% url 'listagem_usuarios' %}" method="get">
+          <button name ="lista" class='form-control-sm'>Listar</button>
+
         </form>
 
     <!-- Optional JavaScript; choose one of the two! -->
