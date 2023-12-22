@@ -7,7 +7,7 @@ def home(request):
     return render(request,'home.html')
 # Create your views here.
 
-def usuarios(request):
+def lista_usuarios(request):
 
     #SALVAR OS DADOS DA TELA PARA O BANCO
     novo_usuario = Usuario()
