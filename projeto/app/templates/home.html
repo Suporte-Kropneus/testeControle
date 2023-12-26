@@ -17,23 +17,44 @@
         <div class="container-fluid">
           <span class="navbar-brand mb-0 h1" href="#">Cadastre-me</a>
         </div>
-      </nav>
-        <form action="{% url 'cria_usuarios' %}" method="post">
-            {% csrf_token %}
-            <div style="text-align: center;" class="container">
-                <h1>Cadastro de Usuario</h1>
-                Nome <input name="nome" class='form-control-sm' type="text">
-                Idade <input name="idade" class='form-control-sm' type="text">
-                <button class='form-control-sm'>Enviar</button>
+    </nav>
+       <form action="{% url 'cria_usuarios' %}" method="post">
+       {% csrf_token %}
+      
+        <div style="text-align: center;" class="container">
+                  <h1>Cadastro de Usuario</h1>
+                  Nome <input name="nome" class='form-control-sm' type="text">
+                  Idade <input name="idade" class='form-control-sm' type="text">
+                  <button class='form-control-sm'>Enviar</button>
                 
               </div>
-            
-        </form>
+      </form>
+        <!-- Div utilizada para fazer uma lista com todos os usuarios cadastrados -->
+        <div style="text-align: center;" class="container">
+            <h1>Listar usuarios</h1>
+              <form action="{% url 'listagem_usuarios' %}" method="get">
+                <button name ="lista" class='form-control-sm'>Listar</button>
+              </form>
+        </div>
 
-        <form action="{% url 'listagem_usuarios' %}" method="get">
-          <button name ="lista" class='form-control-sm'>Listar</button>
+                
+        <div style="text-align: center;"class='container'>
+          <h1>Listar apenas um</h1>
+            <form action="{% url 'listagem_unica' %}" method="get">
+            ID<input name="id" class="form-control-sm" type="text">
+            <button class='form-control-sm'>Procurar pelo ID</button>
+          </form>
+        </div>
 
-        </form>
+        <div style="text-align: center;"class='container'>
+          <h1>Listar apenas um(PaginaAtual)</h1>
+            <form action="{% url 'listagem_unica' %}" method="get">
+            ID<input name="id" class="form-control-sm" type="text">
+            <button class='form-control-sm'>Procurar pelo ID</button>
+          </form>
+        </div>
+
+
 
     <!-- Optional JavaScript; choose one of the two! -->
 

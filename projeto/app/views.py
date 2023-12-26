@@ -32,5 +32,18 @@ def deleta_usuario(request,pk):
     data.delete()
     return redirect('/lista_usuario/')
 
+def lista_um(request):
+
+
+    pk = request.GET.get('id')
+    print(pk)
+    usuario_cadastrado =    {
+        'usuarios':Usuario.objects.get(id_usuario=pk)    
+        }
+    
+    return render(request,'id_usuario.html',usuario_cadastrado)
+    
+
+
 
 
