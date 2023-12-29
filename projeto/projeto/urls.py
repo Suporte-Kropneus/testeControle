@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from app.views import home, lista_usuarios,cria_usuario,deleta_usuario,lista_um,lista_dois,deleta_usuario2,update
+from app.views import home, edit,lista_usuarios,cria_usuario,deleta_usuario,lista_um,lista_dois,deleta_usuario2,update
 
 urlpatterns = [
     path('',home,name='home'),
@@ -10,7 +10,7 @@ urlpatterns = [
     path('listagem_unica/', lista_um, name='listagem_unica'),
     path('homelista/',lista_dois,name='homelista'),
     path('deletauser/<int:pk>/',deleta_usuario2,name='deletauser'),
-    path('update/<int:pk>/',update,name='update_user')
-    
+    path('update/<int:pk>/',update,name='update_user'),
+    path('edit/<int:pk>/',edit , name ='edit_User')
 ]
 

@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import Usuario
 from django.shortcuts import redirect
 from django.shortcuts import get_object_or_404
+from app.forms import UsuarioForm
 
 
 def home(request):
@@ -61,10 +62,21 @@ def deleta_usuario2(request,pk):
 
     return redirect('/')
 
-def update(request,pk):
+def edit(request,pk):
+    data = {}
+    data['db'] = get_object_or_404(Usuario,pk=pk)
+    form = UsuarioForm(request.POST or None, instance=data['db'])
+    if form.is_valid():
+        form.save()
+        return redirect('/')
 
-    data = Usuario.objects.get(pk=pk)
-    return render(request,'update.html',{'data':data})
+def update(request,pk):
+    data = {}
+    data['db'] = get_object_or_404(Usuario,pk=pk)
+    data['form'] = UsuarioForm(instance=data['db']) 
+    return render(request,'update.html',data)
+
+
 
 
 

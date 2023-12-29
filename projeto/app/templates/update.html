@@ -14,41 +14,19 @@
 </head>
 
 <body>
+    <h1>OI</h1>
+    <div class="col-8 m-auto pt-4 pb-2 text-center">
+        <form method="post" nome="nome" id="form" action="/edit/{{db.id_usuario}}/">
+            {% csrf_token %}
 
-
-    <div class='container'>
-        <table>
-            <tr>
-                <th>id</th>
-                <th>usuarios</th>
-                <th>idade</th>
-                <th></th>
-            </tr>
-
-            <tr>
-                <td>{{usuario.id_usuario}}</td>
-                <td>{{usuario.nome}}</td>
-                <td>{{usuario.idade}}</td>
-                
-                <form action="{% url 'cria_usuarios' %}" method="post">
-                    {% csrf_token %}
-                   
-                     <div style="text-align: center;" class="container">
-                               <h1>Cadastro de Usuario</h1>
-                               Nome <input name="nome" class='form-control-sm' type="text">
-                               Idade <input name="idade" class='form-control-sm' type="text">
-                               <button type="submit" class='form-control-sm'>Editar</button>
-                             
-                           </div>
-                   </form>
-   
-                           
-                    </a>
-                </td>
-            </tr>
-
-        </table>
+            <div class="form-group mt-4">
+                nome:{{form.nome}}
+                idade:{{form.idade}}    
+            </div>
+        <input type="submit" class="btn btn-sucess" value="Salvar">
+        </form>
     </div>
+
 </body>
 
 </html>
