@@ -31,10 +31,17 @@
       </form>
         <!-- Div utilizada para fazer uma lista com todos os usuarios cadastrados -->
         <div style="text-align: center;" class="container">
-            <h1>Listar usuarios</h1>
+            <h1>Listar/Pesquisa</h1>
               <form action="{% url 'listagem_usuarios' %}" method="get">
                 <button name ="lista" class='form-control-sm'>Listar</button>
               </form>
+        </div>
+
+        <div style="text-align: center;" class="container">
+          <h1>Listar/Radio</h1>
+            <form action="{% url 'lista_radio' %}" method="get">
+              <button class='form-control-sm'>Listar</button>
+            </form>
         </div>
 
                 

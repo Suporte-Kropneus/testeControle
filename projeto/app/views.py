@@ -12,7 +12,7 @@ def home(request):
 def lista_usuarios(request):
     #Exibir todos os usuarios já cadastrados em uma nova pagina
     usuario = {
-        'usuarios': Usuario.objects.All()
+        'usuarios': Usuario.objects.all()
     }
     #Retornar os dados para a página de listagem de usuários
     return render(request,'usuarios.html',usuario)
@@ -30,17 +30,30 @@ def buscar(request):
         }
     return render(request,'usuarios.html',usuario)
 
+def radio(request):
+    #Exibir apenas o filtro solicitado no radio
+    filter = request.GET.get('filter')
+    valor = request.GET.get('valor')
+    if filter == 'id' :
+        usuario = {
+            'usuarios':Usuario.objects.filter(id_usuario=valor)
+        }
+    elif filter == 'nome':
+        usuario = {
+            'usuarios':Usuario.objects.filter(nome__icontains=valor)    
+        }    
+    
+    return render(request,'radio.html',usuario)
 
 def cria_usuario(request):
     
-        #SALVAR OS DADOS DA TELA PARA O BANCO
+    #SALVAR OS DADOS DA TELA PARA O BANCO
     novo_usuario = Usuario()
     novo_usuario.nome = request.POST.get('nome')
     novo_usuario.idade = request.POST.get('idade')
     novo_usuario.save()
 
     return redirect('/lista_usuario/')
-
 
 def deleta_usuario(request,pk):
     data = get_object_or_404(Usuario,pk=pk)
@@ -58,6 +71,20 @@ def lista_um(request):
         }
     
     return render(request,'id_usuario.html',usuario_cadastrado)
+
+
+def lista_radio(request):
+    #Exibir todos os usuarios já cadastrados em uma nova pagina
+
+    usuario = {
+        'usuarios': Usuario.objects.all()
+    }
+
+    #Retornar os dados para a página de listagem de usuários
+    return render(request,'radio.html',usuario)
+
+
+
 
 def lista_dois(request):
 

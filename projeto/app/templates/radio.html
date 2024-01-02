@@ -22,12 +22,44 @@
         <table>
 
             <hr>
-                <form action="{% url 'buscar' %}" method="GET">
-                     <input name="nome" class="p-1 border" type="text" value="{{ request.GET.nome }}">
-                     <button class='btn btn-sucess' type="submit">Procurar usuario</button>
+                <form action="{% url 'filtra_radio' %}" method="GET">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="filter" value='id' >
+                        <label class="form-check-label" for="flexRadioDefault1">
+                          Apenas ID
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="filter" value='nome' >
+                        <label class="form-check-label" for="flexRadioDefault1">
+                          Apenas Nome
+                        </label>
+                      </div>
+                    <hr>
+                          <!-- <form action="{% url 'buscar' %}" method="GET"> -->
+                        <input name="valor" class="p-1 border" type="text" value="">
+                        <button class='btn btn-sucess' type="submit">Procurar usuario</button>
+                          <!-- </form> -->
+                          <a href="{% url 'listagem_usuarios' %}" class="btn btn-light">Limpar</a>
+                    </hr>
+                    <!-- <button class="btn btn-sucess" type="submit">Filtrar</button> -->
                 </form>
-                <a href="{% url 'listagem_usuarios' %}" class="btn btn-light">Limpar</a>
             </hr>
+
+
+
+
+
+
+
+
+            
+
+            <!--FILTRO DE BUSCA -->
+
+            
+            
+            
             <tr>
                 <th>id</th>
                 <th>usuarios</th>

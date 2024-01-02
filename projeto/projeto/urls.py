@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from app.views import home, edit,lista_usuarios,cria_usuario,deleta_usuario,lista_um,lista_dois,deleta_usuario2,update,buscar
+from app.views import home, edit,lista_usuarios,cria_usuario,deleta_usuario,lista_um,lista_dois,deleta_usuario2,update,buscar,lista_radio,radio
 
 urlpatterns = [
     path('',home,name='home'),
@@ -12,6 +12,8 @@ urlpatterns = [
     path('deletauser/<int:pk>/',deleta_usuario2,name='deletauser'),
     path('update/<int:pk>/',update,name='update_user'),
     path('edit/<int:pk>/',edit , name ='edit_User'),
-    path('buscar_usuario/',buscar, name='buscar')
+    path('buscar_usuario/',buscar, name='buscar'),
+    path('radio/',lista_radio,name='lista_radio'),
+    path('filtrar/',radio,name="filtra_radio")
 ]
 
