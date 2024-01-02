@@ -12,10 +12,24 @@ def home(request):
 def lista_usuarios(request):
     #Exibir todos os usuarios já cadastrados em uma nova pagina
     usuario = {
-        'usuarios': Usuario.objects.all()
+        'usuarios': Usuario.objects.All()
     }
     #Retornar os dados para a página de listagem de usuários
-    return render (request,'usuarios.html',usuario)
+    return render(request,'usuarios.html',usuario)
+
+def buscar(request):
+    #Exibir apenas os usuarios que foram digitados na barra de pesquisa
+    txt_nome = request.GET.get('nome')
+    if txt_nome:
+        usuario = {
+            'usuarios':Usuario.objects.filter(nome__icontains=txt_nome)
+        }
+    else:
+        usuario = {
+            'usuarios': Usuario.objects.all()
+        }
+    return render(request,'usuarios.html',usuario)
+
 
 def cria_usuario(request):
     
@@ -75,6 +89,8 @@ def update(request,pk):
     data['db'] = get_object_or_404(Usuario,pk=pk)
     data['form'] = UsuarioForm(instance=data['db']) 
     return render(request,'update.html',data)
+
+
 
 
 
