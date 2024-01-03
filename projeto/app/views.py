@@ -60,7 +60,10 @@ def deleta_usuario(request,pk):
     data.delete()
     return redirect('/lista_usuario/')
 
-
+def check_varios(request,pk):
+    data = get_object_or_404(Usuario,pk=pk)
+    data.delete()
+    return redirect('/lista_usuario/')
 
 def lista_um(request):
 
@@ -72,7 +75,6 @@ def lista_um(request):
     
     return render(request,'id_usuario.html',usuario_cadastrado)
 
-
 def lista_radio(request):
     #Exibir todos os usuarios já cadastrados em uma nova pagina
 
@@ -83,9 +85,6 @@ def lista_radio(request):
     #Retornar os dados para a página de listagem de usuários
     return render(request,'radio.html',usuario)
 
-
-
-
 def lista_dois(request):
 
 
@@ -95,7 +94,6 @@ def lista_dois(request):
         }
     
     return render(request,'home.html',usuario_cadastrado)
-
 
 def deleta_usuario2(request,pk):
     data = get_object_or_404(Usuario,pk=pk)
@@ -117,8 +115,16 @@ def update(request,pk):
     data['form'] = UsuarioForm(instance=data['db']) 
     return render(request,'update.html',data)
 
+def deleta_varios(request):
 
+    if request.method == 'POST':
+        check = request.POST.getlist('check[]')
+    print(check)
 
+    for i in check:
+        data = Usuario.objects.get(pk=i)
+        data.delete()
+    return redirect('/lista_usuario/')
 
 
 
