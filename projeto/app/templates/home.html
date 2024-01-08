@@ -1,107 +1,129 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Cadastre-me</title>
-  </head>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-  <body>
-    
-    <nav style="background-color: aquamarine !important;" class="navbar navbar-light bg-light">
-        <div class="container-fluid">
-          <span class="navbar-brand mb-0 h1" href="#">Cadastre-me</a>
-        </div>
-    </nav>
-       <form action="{% url 'cria_usuarios' %}" method="post">
-       {% csrf_token %}
-      
-        <div style="text-align: center;" class="container">
-                  <h1>Cadastro de Usuario</h1>
-                  Nome <input name="nome" class='form-control-sm' type="text">
-                  Idade <input name="idade" class='form-control-sm' type="text">
-                  <button class='form-control-sm'>Enviar</button>
-                
-              </div>
-      </form>
-        <!-- Div utilizada para fazer uma lista com todos os usuarios cadastrados -->
-        <div style="text-align: center;" class="container">
-            <h1>Listar/Pesquisa</h1>
-              <form action="{% url 'listagem_usuarios' %}" method="get">
-                <button name ="lista" class='form-control-sm'>Listar</button>
-              </form>
-        </div>
+  <title>Cadastre-me</title>
+</head>
 
-        <div style="text-align: center;" class="container">
-          <h1>Listar/Radio</h1>
-            <form action="{% url 'lista_radio' %}" method="get">
-              <button class='form-control-sm'>Listar</button>
-            </form>
-        </div>
+{% extends "base.html" %}
 
-                
-        <div style="text-align: center;"class='container'>
-          <h1>Listar apenas um</h1>
-            <form action="{% url 'listagem_unica' %}" method="get">
-            ID<input name="id" class="form-control-sm" type="text">
-            <button class='form-control-sm'>Procurar pelo ID</button>
-          </form>
-        </div>
+{% block title %}Home{% endblock %}
 
-        <div style="text-align: center;"class='container'>
-          <h1>Listar apenas um(PaginaAtual)</h1>
-            <form action="{% url 'homelista' %}" method="get">
-            ID<input name="id" class="form-control-sm" type="text">
-            <button class='form-control-sm'>Procurar pelo ID</button>
-              <table>
-                  <tr>
-                      <th>id</th>
-                      <th>usuarios</th>
-                      <th>idade</th>
-                      <th></th>
-                  </tr>
-                  <tr>
-                      <td>{{usuarios.id_usuario}}</td>
-                      <td>{{usuarios.nome}}</td>
-                      <td>{{usuarios.idade}}</td>
-                      <td>
-                    
-                        <a href="/deletauser/{{usuarios.id_usuario}}/">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
-                                <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
-                              </svg>
-                        </a>
-                        <a href="/update/{{usuarios.id_usuario}}/">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
-                            <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001m-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>
-                        </svg>
-                      </a>
-                    </td>
-                  </tr>
-              </table>
+{% block content %}
+{% if user.is_authenticated %}
 
-          </form>
-        </div>
+<body>
+
+  <nav style="background-color: aquamarine !important;" class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+      <span class="navbar-brand mb-0 h1" href="#">Cadastre-me</a>
+    </div>
+  </nav>
+  <form action="{% url 'cria_usuarios' %}" method="post">
+    {% csrf_token %}
+
+    <div style="text-align: center;" class="container">
+      <h1>Cadastro de Usuario</h1>
+      Nome <input name="nome" class='form-control-sm' type="text">
+      Idade <input name="idade" class='form-control-sm' type="text">
+      <button class='form-control-sm'>Enviar</button>
+
+    </div>
+  </form>
+  <!-- Div utilizada para fazer uma lista com todos os usuarios cadastrados -->
+  <div style="text-align: center;" class="container">
+    <h1>Listar/Pesquisa</h1>
+    <form action="{% url 'listagem_usuarios' %}" method="get">
+      <button name="lista" class='form-control-sm'>Listar</button>
+    </form>
+  </div>
+
+  <div style="text-align: center;" class="container">
+    <h1>Listar/Radio</h1>
+    <form action="{% url 'lista_radio' %}" method="get">
+      <button class='form-control-sm'>Listar</button>
+    </form>
+  </div>
 
 
+  <div style="text-align: center;" class='container'>
+    <h1>Listar apenas um</h1>
+    <form action="{% url 'listagem_unica' %}" method="get">
+      ID<input name="id" class="form-control-sm" type="text">
+      <button class='form-control-sm'>Procurar pelo ID</button>
+    </form>
+  </div>
 
-    <!-- Optional JavaScript; choose one of the two! -->
+  <div style="text-align: center;" class='container'>
+    <h1>Listar apenas um(PaginaAtual)</h1>
+    <form action="{% url 'homelista' %}" method="get">
+      ID<input name="id" class="form-control-sm" type="text">
+      <button class='form-control-sm'>Procurar pelo ID</button>
+      <table>
+        <tr>
+          <th>id</th>
+          <th>usuarios</th>
+          <th>idade</th>
+          <th></th>
+        </tr>
+        <tr>
+          <td>{{usuarios.id_usuario}}</td>
+          <td>{{usuarios.nome}}</td>
+          <td>{{usuarios.idade}}</td>
+          <td>
 
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+            <a href="/deletauser/{{usuarios.id_usuario}}/">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-trash"
+                viewBox="0 0 16 16">
+                <path
+                  d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
+                <path
+                  d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
+              </svg>
+            </a>
+            <a href="/update/{{usuarios.id_usuario}}/">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pen"
+                viewBox="0 0 16 16">
+                <path
+                  d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001m-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z" />
+              </svg>
+            </a>
+          </td>
+        </tr>
+      </table>
 
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
+    </form>
+  </div>
+
+
+
+  <!-- Optional JavaScript; choose one of the two! -->
+
+  <!-- Option 1: Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+
+  <!-- Option 2: Separate Popper and Bootstrap JS -->
+  <!--
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     -->
-  </body>
+</body>
+{% else %}
+  <p>You are not logged in</p>
+  <a href="{% url 'login' %}">Log In</a>
+{% endif %}
+{% endblock %}
+
 </html>
 
 

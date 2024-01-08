@@ -1,9 +1,14 @@
 from django.contrib import admin
-from django.urls import path
-from app.views import home, edit,lista_usuarios,cria_usuario,deleta_usuario,lista_um,lista_dois,deleta_usuario2,update,buscar,lista_radio,radio,deleta_varios
+from django.urls import path, include
+from django.views.generic.base import TemplateView
+
+
+from app.views import home,edit,lista_usuarios,cria_usuario,deleta_usuario,lista_um,lista_dois,deleta_usuario2,update,buscar,lista_radio,radio,deleta_varios
 
 urlpatterns = [
-    path('',home,name='home'),
+    
+   
+    path('', TemplateView.as_view(template_name='home.html'),name='home'),
     path('cria_usuario/',cria_usuario, name='cria_usuarios'),
     path('lista_usuario/',lista_usuarios, name='listagem_usuarios'),
     path('deleta_usuario/<int:pk>/',deleta_usuario,name='deleta_usuario'),
@@ -15,6 +20,18 @@ urlpatterns = [
     path('buscar_usuario/',buscar, name='buscar'),
     path('radio/',lista_radio,name='lista_radio'),
     path('filtrar/',radio,name="filtra_radio"),
-    path('deleta_varios/',deleta_varios,name="deleta_var")
+    path('deleta_varios/',deleta_varios,name="deleta_var"),
+
+
+
+    #--------LINKS PARA TELA DE LOGIN-------
+
+
+    #link do administrator
+    path("admin/", admin.site.urls),
+
+    #link padrão django
+    path("accounts/", include("django.contrib.auth.urls"))
+    
 ]
 
