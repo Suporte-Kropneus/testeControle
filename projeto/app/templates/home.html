@@ -101,7 +101,17 @@
       </table>
 
     </form>
+    <div class="container" style="align-items: center;">
+      <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button class="form-control-sm">Log out</button>
+      </form>
+
+    </div>
+
   </div>
+
+
 
 
 
@@ -118,9 +128,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     -->
 </body>
+
 {% else %}
-  <p>You are not logged in</p>
-  <a href="{% url 'login' %}">Log In</a>
+<p>You are not logged in</p>
+<a href="{% url 'login' %}">Log In</a>
 {% endif %}
 {% endblock %}
 
