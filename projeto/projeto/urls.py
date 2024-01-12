@@ -3,7 +3,7 @@ from django.urls import path, include
 from django.views.generic.base import TemplateView
 
 
-from app.views import home,edit,lista_usuarios,cria_usuario,deleta_usuario,lista_um,lista_dois,deleta_usuario2,update,buscar,lista_radio,radio,deleta_varios
+from app.views import *
 
 urlpatterns = [
     
