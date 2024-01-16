@@ -77,11 +77,9 @@ def lista_um(request):
 
 def lista_radio(request):
     #Exibir todos os usuarios já cadastrados em uma nova pagina
-
     usuario = {
         'usuarios': Usuario.objects.all()
     }
-
     #Retornar os dados para a página de listagem de usuários
     return render(request,'radio.html',usuario)
 
